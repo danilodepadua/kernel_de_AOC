@@ -1,9 +1,10 @@
 .text # depois dessa directive vem o código em texto
-.globl entrada_do_kernel # label globl para ser referenciada por outros arquivos do código a seguir
-entrada_do_kernel: # label do código
+.globl start # label globl para ser referenciada por outros arquivos do código a seguir
+start: # label do código
 
-li $v0, 4 # guarda o valor imediato 4 (print_string) no register v0 de syscalls
-la $a0, confirmacao_de_kernel # carrega uma label (confirmacao_de_kernel) e guarda no register de argumento a0
+addi $v0, $0, 4
+lui $a0, 0x1001
+ori $a0, $a0, 0x0000
 syscall # chama a syscall
 
 jal kernel_main # instrução de pular e linkar para o main do kernel.c
